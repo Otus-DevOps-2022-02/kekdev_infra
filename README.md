@@ -22,4 +22,4 @@ Host someinternalhost
 
 ### Данные для подключения по VPN ###
 bastion_IP = 51.250.7.149
-someinternalhost_IP = 10.156.0.3
+someinternalhost_IP = 10.128.0.32
