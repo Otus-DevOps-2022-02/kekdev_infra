@@ -15,3 +15,11 @@ Host someinternalhost
   ProxyJump appuser@<jump_host>
   User appuser
 `
+
+### SSL Сертификат ###
+Для получения сертификата достаточно прописать в настройках
+в веб-консоли домен <ip>.sslip.io
+
+### Данные для подключения по VPN ###
+bastion_IP = 51.250.7.149
+someinternalhost_IP = 10.156.0.3
