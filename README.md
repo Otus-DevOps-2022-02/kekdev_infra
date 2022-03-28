@@ -8,13 +8,13 @@ kekdev Infra repository
 
 Чтобы подключаться к хосту по алиасу необходимо добавить конфиг SSH (`~/.ssh/config`):
 
-`
+```
 Host someinternalhost
   HostName <internal_host_ip>
   IdentityFile <private_key>
   ProxyJump appuser@<jump_host>
   User appuser
-`
+```
 
 ### SSL Сертификат ###
 Для получения сертификата достаточно прописать в настройках
