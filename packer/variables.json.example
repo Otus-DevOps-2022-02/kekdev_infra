@@ -1,0 +1,6 @@
+{
+    "key_file_path": "key.json",
+    "folder_id": "test-folder",
+    "source_image": "ubuntu-1604-lts",
+    "ssh_username": "ubuntu"
+}
