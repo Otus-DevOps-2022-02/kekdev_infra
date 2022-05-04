@@ -39,3 +39,17 @@ yc compute instance create --name reddit-app --hostname reddit-app --memory=4 \
     --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
     --metadata serial-port-enable=1 --metadata-from-file user-data=./startup-script.sh
 ```
+
+### Reddit app image ###
+1. Создаём сервис-аккаунт в `yc` и присваиваем ему роль `editor`
+2. Создаём ключ для сервис-аккаунта
+3. Создаём базовый образ с помощью `packer` с предустановленными `ruby` и `mongodb`
+4. Поднимаем ВМ на основе нашего образа
+5. Внутри ВМ устанавливаем и запускаем наше приложение
+```
+sudo apt-get update
+sudo apt-get install -y git
+git clone -b monolith https://github.com/express42/reddit.git
+cd reddit && bundle install
+puma -d
+```
