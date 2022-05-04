@@ -1,6 +1,6 @@
 {
-    "key_file_path": null,
-    "folder_id": null,
-    "source_image": null,
-    "ssh_username": null
+    "key_file_path": "key.json",
+    "folder_id": "test-folder",
+    "source_image": "ubuntu-1604-lts",
+    "ssh_username": "ubuntu"
 }
