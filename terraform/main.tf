@@ -1,6 +1,9 @@
 terraform {
   required_providers {
-    yandex =  "~> 0.35"
+    yandex = {
+      source = "yandex-cloud/yandex"
+      version = "~> 0.35"
+    }
   }
   required_version = ">= 0.12.0"
 }
@@ -13,7 +16,7 @@ provider "yandex" {
 }
 
 resource "yandex_compute_instance" "app" {
-  count = 2
+  count = 1
   name  = "reddit-app${count.index}"
   zone  = var.resource_zone
   resources {
@@ -26,7 +29,7 @@ resource "yandex_compute_instance" "app" {
     }
   }
   network_interface {
-    subnet_id = var.subnet_id
+    subnet_id = yandex_vpc_subnet.app-subnet.id
     nat       = true
   }
 
@@ -54,4 +57,15 @@ resource "yandex_compute_instance" "app" {
   provisioner "remote-exec" {
     script = "files/deploy.sh"
   }
+}
+
+resource "yandex_vpc_network" "app-network" {
+  name = "reddit-app-network"
+}
+
+resource "yandex_vpc_subnet" "app-subnet" {
+  name           = "reddit-app-subnet"
+  zone           = "ru-central1-a"
+  network_id     = "${yandex_vpc_network.app-network.id}"
+  v4_cidr_blocks = ["192.168.10.0/24"]
 }
