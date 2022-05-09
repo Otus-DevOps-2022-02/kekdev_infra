@@ -1,0 +1,4 @@
+bucket     = "bucket"
+key        = "path/to/state.tfstate"
+access_key = "access key"
+secret_key = "secret key"
