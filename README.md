@@ -53,7 +53,7 @@ git clone -b monolith https://github.com/express42/reddit.git
 cd reddit && bundle install
 puma -d
 ```
-
+51.250.82.153
 ### Terraform app install ###
 1. Копируем `terraform.tfvars.example` в `terraform.tfvars`
 2. Заполняем актуальными данными в `terraform.tfvars`
