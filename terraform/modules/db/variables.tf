@@ -8,3 +8,7 @@ variable "db_disk_image" {
 variable "subnet_id" {
   description = "Subnets for modules"
 }
+
+variable "private_key_path" {
+  description = "Private key path"
+}

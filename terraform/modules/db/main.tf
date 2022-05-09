@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     yandex = {
-      source = "yandex-cloud/yandex"
+      source  = "yandex-cloud/yandex"
       version = ">= 0.35.0"
     }
   }
@@ -31,4 +31,20 @@ resource "yandex_compute_instance" "db" {
   metadata = {
     ssh-keys = "ubuntu:${file(var.public_key_path)}"
   }
+  connection {
+    type        = "ssh"
+    host        = self.network_interface.0.nat_ip_address
+    user        = "ubuntu"
+    agent       = false
+    private_key = file(var.private_key_path)
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo sed -i 's/bindIp:.*/bindIp: ${self.network_interface.0.ip_address}/' /etc/mongod.conf",
+      "sudo systemctl restart mongod"
+    ]
+  }
 }
+
+#sed -i "s/bindIp:.*/bindIp: 128.0.0.2/" /etc/mongod.conf
