@@ -53,3 +53,12 @@ git clone -b monolith https://github.com/express42/reddit.git
 cd reddit && bundle install
 puma -d
 ```
+
+### Terraform app install ###
+1. Копируем `terraform.tfvars.example` в `terraform.tfvars`
+2. Заполняем актуальными данными в `terraform.tfvars`
+3. Запускает `terraform apply`
+
+Добавлен лоад балансер, для запуска нескольких инстансов приложения
+Чтобы уменьшить дублирование кода, для поднятия нескольких инстансов приложения,
+использован ключ `count` для ресурса `yandex_compute_instance`
