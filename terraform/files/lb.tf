@@ -35,3 +35,7 @@ resource "yandex_lb_target_group" "reddit" {
   }
 
 }
+
+output "external_ip_address_balancer" {
+  value = yandex_lb_network_load_balancer.app_balancer.listener.*.external_address_spec[0].*.address
+}

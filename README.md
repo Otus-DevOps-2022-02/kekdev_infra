@@ -53,12 +53,15 @@ git clone -b monolith https://github.com/express42/reddit.git
 cd reddit && bundle install
 puma -d
 ```
-
+51.250.82.153
 ### Terraform app install ###
-1. Копируем `terraform.tfvars.example` в `terraform.tfvars`
-2. Заполняем актуальными данными в `terraform.tfvars`
-3. Запускает `terraform apply`
+Конфиг разбит на модули, а также на 2 конфигурации для стейджинг и прод сред
+В качестве бэкэнда для стейта используется s3
 
-Добавлен лоад балансер, для запуска нескольких инстансов приложения
-Чтобы уменьшить дублирование кода, для поднятия нескольких инстансов приложения,
-использован ключ `count` для ресурса `yandex_compute_instance`
+В директории нужной среды конфигурации:
+1. Копируем `s3.tfbackend.example` в `s3.tfbackend`
+2. Заполняем актуальными данными в `s3.tfbackend`
+3. Выолняем `terraform init -backend-config=s3.tfbackend`
+4. Копируем `terraform.tfvars.example` в `terraform.tfvars`
+5. Заполняем актуальными данными в `terraform.tfvars`
+6. Запускает `terraform apply`
