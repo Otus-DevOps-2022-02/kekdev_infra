@@ -6,11 +6,16 @@ filters:
 auth_kind: serviceaccountfile
 service_account_file: ./key.json
 hostnames:
-  - "{{ name }}"
+  - "{{ name.replace('reddit-', '') }}server"
 compose:
   ansible_host: network_interfaces[0].primary_v4_address.one_to_one_nat.address
+  internal_ip: network_interfaces[0].primary_v4_address.address
 
 keyed_groups:
   - key: labels.tags
     prefix: ''
     separator: ''
+
+groups:
+  app: "'reddit-app' in labels.tags"
+  db: "'reddit-db' in labels.tags"
