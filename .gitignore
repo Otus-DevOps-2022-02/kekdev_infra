@@ -5,3 +5,4 @@
 *.tfbackend
 .terraform/
 *.tetry
+jdauphant.nginx
