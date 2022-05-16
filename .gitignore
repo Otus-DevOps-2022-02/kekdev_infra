@@ -5,3 +5,5 @@
 *.tfbackend
 .terraform/
 *.tetry
+jdauphant.nginx
+vault.key
