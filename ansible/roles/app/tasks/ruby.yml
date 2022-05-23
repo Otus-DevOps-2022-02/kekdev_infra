@@ -1,0 +1,6 @@
+---
+- name: Install packages
+  apt:
+    name: git, ruby-full, ruby-bundler, build-essential
+    update_cache: yes
+  tags: ruby

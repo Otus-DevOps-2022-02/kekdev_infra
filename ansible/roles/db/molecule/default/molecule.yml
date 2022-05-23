@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint: yamllint
+platforms:
+  - name: instance
+    box: ubuntu/xenial64
+    config_options:
+      ssh.remote_user: 'vagrant'
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+verifier:
+  name: testinfra
